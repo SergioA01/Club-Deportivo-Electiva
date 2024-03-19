@@ -19,15 +19,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="descripcion">Descripción<strong>*</strong></label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" [(ngModel)]="formData.descripcion"
-                        required></textarea>
-                    <div class="invalid-feedback">
-                        Por favor, introduce una descripción válida.
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label for="fecha">Fecha<strong>*</strong></label>
                     <input type="date" class="form-control" id="fecha" name="fecha"
                         [ngModel]="formData.fecha | date:'yyyy-MM-dd'" required>

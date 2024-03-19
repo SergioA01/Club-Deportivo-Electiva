@@ -3,6 +3,8 @@ import { Evento } from 'src/app/models/evento.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { EventosFormComponent } from '../eventos-form/eventos-form.component';
 import { AlertService } from 'src/app/services/alert.service';
+import { EventoService } from 'src/app/services/backend/evento.service';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-eventos-base',
@@ -15,19 +17,18 @@ export class EventosBaseComponent {
 
   constructor(
     private dialog: MatDialog,
-    private alert: AlertService
+    private alert: AlertService,
+    private eventoService: EventoService
   ) {
-    for (let i = 1; i <= 8; i++) {
-      const evento: Evento = {
-        id: i,
-        nombre: `Evento ${i}`,
-        descripcion: `Descripción ${i}`,
-        fecha: new Date(),
-        editar: () => this.editarMiembro(evento),
-        eliminar: () => this.eliminarMiembro(evento)
-      };
-      this.eventos.push(evento);
-    }
+    this.cargarlista()
+  }
+
+  cargarlista(){
+    this.eventoService.obtenerEventos().pipe(catchError( (error) => {
+      return throwError( () => error )
+    })).subscribe( (response) => {
+      this.eventos = response.data
+    })
   }
 
   openDialog(){
@@ -44,7 +45,7 @@ export class EventosBaseComponent {
     });
   }
 
-  editarMiembro(evento: Evento): void {
+  editarEvento(evento: Evento): void {
     const dialogRef = this.dialog.open(EventosFormComponent, {
       width: '1000px',
       data: {
@@ -58,10 +59,14 @@ export class EventosBaseComponent {
     });
   }
 
-  async eliminarMiembro(evento: Evento){
+  async eliminarEvento(evento: Evento){
     const result = await this.alert.confirm(`¿Estás seguro que deseas eliminar la participacion en ${evento.nombre} ?`, 'Eliminar')
     if(result.isConfirmed){
-      
+      this.eventoService.eliminarEvento(evento.id).pipe(catchError( (error) => {
+        return throwError( () => error )
+       })).subscribe( (response) => {
+        window.location.reload()
+       })  
     }
   }
 }

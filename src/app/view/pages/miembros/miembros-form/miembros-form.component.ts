@@ -60,6 +60,7 @@ export class MiembrosFormComponent {
     if (this.validarDatos()) {
       // Aquí puedes manejar la lógica para guardar los datos del formulario
       if(this.data.nuevo){
+        
         this.miembroService.crearNuevo(this.formData).pipe(catchError((error) => {
           return throwError(() => error)
         })).subscribe((response) => {

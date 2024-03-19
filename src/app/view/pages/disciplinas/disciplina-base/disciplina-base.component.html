@@ -31,8 +31,12 @@
                 <td>{{ disciplina.nombre }}</td>
                 <td>{{ disciplina.modalidad }}</td>
                 <td class="d-flex justify-content-around">
-                    <button class="btn btn-warning" (click)="disciplina.editar()"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></button>
-                    <button class="btn btn-danger" (click)="disciplina.eliminar()"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                    <button class="btn btn-warning" (click)="editarDisciplina(disciplina)">
+                        <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
+                    </button>
+                    <button class="btn btn-danger" (click)="eliminarDisciplina(disciplina)">
+                        <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+                    </button>
                 </td>
             </tr>
         </tbody>
