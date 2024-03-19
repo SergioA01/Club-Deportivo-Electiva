@@ -1,0 +1,72 @@
+<div class="container p-5">
+    <div class="row">
+        <div class="col">
+            <h2>{{titulo}}</h2>
+            <h6>{{subTitulo}}</h6>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <form class="needs-validation" novalidate (ngSubmit)="guardar()">
+                <div class="form-group">
+                    <label for="nombre">Nombre<strong>*</strong></label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="formData.nombre"
+                        required>
+                    <div class="invalid-feedback" *ngIf="!formData.nombre">
+                        Por favor, introduce un nombre válido.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="apellido">Apellido<strong>*</strong></label>
+                    <input type="text" class="form-control" id="apellido" name="apellido"
+                        [(ngModel)]="formData.apellido" required>
+                    <div class="invalid-feedback">
+                        Por favor, introduce un apellido válido.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="documento">Documento<strong>*</strong></label>
+                    <input type="text" class="form-control" id="documento" name="documento"
+                        [(ngModel)]="formData.documento" required>
+                    <div class="invalid-feedback">
+                        Por favor, introduce un número de documento válido.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nacimiento">Fecha de Nacimiento<strong>*</strong></label>
+                    <input type="date" class="form-control" id="nacimiento" name="nacimiento"
+                        [ngModel]="formData.fecha_nacimiento | date:'yyyy-MM-dd'" required>
+                    <div class="invalid-feedback">
+                        Por favor, introduce una fecha de nacimiento válida.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono<strong>*</strong></label>
+                    <input type="tel" class="form-control" id="telefono" name="telefono" [(ngModel)]="formData.telefono"
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, introduce un número de teléfono válido.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="correo" name="correo" [(ngModel)]="formData.correo"
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, introduce un correo electrónico válido.
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.container{
+    border: 1px #FFEBC6 solid;
+    height: 100vh;
+}
+
+.menu-item {
+    cursor: pointer; /* Cambia el cursor a una mano al pasar por encima */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.menu-logo {
+    cursor: pointer; /* Cambia el cursor a una mano al pasar por encima */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.menu-item:hover {
+    background-color: #FFEBC6; /* Cambia el color de fondo al pasar el mouse */
+    color: #1e1e1e; /* Color del texto cuando se tiene en cursor encuima */
+}

@@ -1,0 +1,52 @@
+<!-- Barra de búsqueda -->
+<div class="container search-bar my-5">
+    <div class="row my-4">
+        <h1>Modulo de Miembros</h1>
+        <span>Visualice y gestione la información de los miembros del club deportivo.</span>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar..." [(ngModel)]="terminoBusqueda">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary" (click)="openDialog()">Nuevo Miembro</button>
+        </div>
+    </div>
+</div>
+
+<!-- Tabla -->
+<div class="container table-container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Documento</th>
+                <th scope="col">Nacimiento</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let miembro of miembros | filter:terminoBusqueda">
+                <th scope="row">{{ miembro.id }}</th>
+                <td>{{ miembro.nombre }}</td>
+                <td>{{ miembro.apellido }}</td>
+                <td>{{ miembro.documento }}</td>
+                <td>{{ miembro.fecha_nacimiento | date:'dd/MM/yyyy'}}</td>
+                <td>{{ miembro.telefono }}</td>
+                <td>{{ miembro.correo }}</td>
+                <td class="d-flex justify-content-around">
+                    <button class="btn btn-warning" (click)="editarMiembro(miembro)">
+                        <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
+                    </button>
+                    <button class="btn btn-danger" (click)="eliminarMiembro(miembro)">
+                        <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
