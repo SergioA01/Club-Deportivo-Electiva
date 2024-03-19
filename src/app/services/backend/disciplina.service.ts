@@ -37,5 +37,11 @@ export class DisciplinaService{
         return this.http.get<any>(`${this.baseUrl}/disciplinas/afiliados/${id}`)
     }
 
-    // agregarMiembros():
+    agregarMiembros(id: number, idMiembro: number): Observable<any> {
+        const body = {
+          id: idMiembro
+        };
+    
+        return this.http.put(`${this.baseUrl}/disciplinas/afiliados/agregar/${id}`, body);
+      }
 }
