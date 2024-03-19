@@ -59,6 +59,20 @@ export class DisciplinaBaseComponent {
     });
   }
 
+  administrarMiembros(disciplina: Disciplina){
+    const dialogRef = this.dialog.open(DisciplinaFormComponent, {
+      width: '1000px',
+      data:{
+        nuevo:true,
+        body:null
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo se cerró');
+    });
+  }
+
   async eliminarDisciplina(disciplina: Disciplina) {
     const result = await this.alert.confirm(`¿Estás seguro que deseas eliminar el deporte ${disciplina.nombre} ?`, 'Eliminar')
     if(result.isConfirmed){

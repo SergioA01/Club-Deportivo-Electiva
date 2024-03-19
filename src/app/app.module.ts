@@ -21,7 +21,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoaderComponent } from './view/templates/loader/loader.component';
-import { NosotrosComponent } from './view/templates/nosotros/nosotros.component'; // Importa MatDialogModule
+import { NosotrosComponent } from './view/templates/nosotros/nosotros.component';
+import { AdministrarMiembrosComponent } from './view/pages/disciplinas/administrar-miembros/administrar-miembros.component'; // Importa MatDialogModule
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { NosotrosComponent } from './view/templates/nosotros/nosotros.component'
     FilterPipe,
     LoaderComponent,
     NosotrosComponent,
+    AdministrarMiembrosComponent,
   ],
   imports: [
     BrowserModule,

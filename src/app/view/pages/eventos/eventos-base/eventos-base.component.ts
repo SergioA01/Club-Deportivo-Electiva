@@ -59,6 +59,20 @@ export class EventosBaseComponent {
     });
   }
 
+  administrarMiembros(evento: Evento){
+    const dialogRef = this.dialog.open(EventosFormComponent, {
+      width: '1000px',
+      data:{
+        nuevo:true,
+        body:null
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo se cerró');
+    });
+  }
+
   async eliminarEvento(evento: Evento){
     const result = await this.alert.confirm(`¿Estás seguro que deseas eliminar la participacion en ${evento.nombre} ?`, 'Eliminar')
     if(result.isConfirmed){
