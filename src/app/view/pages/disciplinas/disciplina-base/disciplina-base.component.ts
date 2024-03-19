@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Disciplina } from 'src/app/models/disciplina.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { DisciplinaFormComponent } from '../disciplina-form/disciplina-form.component';
+import { AdministrarMiembrosComponent } from '../administrar-miembros/administrar-miembros.component';
 import { AlertService } from 'src/app/services/alert.service';
 import { DisciplinaService } from 'src/app/services/backend/disciplina.service'
 import { catchError, throwError } from 'rxjs';
@@ -60,11 +61,10 @@ export class DisciplinaBaseComponent {
   }
 
   administrarMiembros(disciplina: Disciplina){
-    const dialogRef = this.dialog.open(DisciplinaFormComponent, {
+    const dialogRef = this.dialog.open(AdministrarMiembrosComponent, {
       width: '1000px',
       data:{
-        nuevo:true,
-        body:null
+        body: disciplina
       }
     });
 

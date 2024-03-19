@@ -32,4 +32,10 @@ export class DisciplinaService{
     editar(formData: Disciplina,id:number):Observable<any>{
         return this.http.put(`${this.baseUrl}/disciplinas/${id}`,formData)
     }
+
+    obtenerMiembrosDisciplina(id:number):Observable<any>{
+        return this.http.get<any>(`${this.baseUrl}/disciplinas/afiliados/${id}`)
+    }
+
+    // agregarMiembros():
 }

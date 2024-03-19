@@ -1,1 +1,52 @@
-<p>administrar-miembros works!</p>
+<div class="container p-5" >
+    <div class="row">
+        <div class="col-8">
+            <select id="miSelect" name="miSelect">
+                <tr *ngFor="let miembro of miembros">
+                <!-- Opción 1 -->
+                <option value="opcion1">Opción 1</option>
+                <!-- Opción 2 -->
+                <option value="opcion2">Opción 2</option>
+                <!-- Opción 3 -->
+                <option value="opcion3">Opción 3</option>
+              </select>
+        </div>
+        <div class="col-4">
+
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Documento</th>
+                    <th scope="col">Nacimiento</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let miembro of miembros">
+                    <th scope="row">{{ miembro.id }}</th>
+                    <td>{{ miembro.nombre }}</td>
+                    <td>{{ miembro.apellido }}</td>
+                    <td>{{ miembro.documento }}</td>
+                    <td>{{ miembro.fecha_nacimiento | date:'dd/MM/yyyy'}}</td>
+                    <td>{{ miembro.telefono }}</td>
+                    <td>{{ miembro.correo }}</td>
+                    <td class="d-flex justify-content-around">
+                        <button class="btn btn-danger" (click)="eliminarMiembro(miembro)">
+                            <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+

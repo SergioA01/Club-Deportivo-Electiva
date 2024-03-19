@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { Disciplina } from 'src/app/models/disciplina.interface';
 import { AlertService } from 'src/app/services/alert.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 import { DisciplinaService } from 'src/app/services/backend/disciplina.service';
 import { catchError, throwError } from 'rxjs';
 
