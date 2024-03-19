@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container p-5">
     <div class="row">
         <div class="col">
@@ -33,5 +34,52 @@
             </form>
         </div>
     </div>
+=======
+<div class="container p-5" >
+    <div class="row my-4">
+        <div class="col-md-10">
+            <select class="form-select" [(ngModel)]="selectedMiembro" name="miembroDropdown">
+                <option *ngFor="let m of miembrosExternos" [value]="m.id">{{ m.nombre }} {{m.apellido}}</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" (click)="agregarMiembro()">Inscribir Miembro</button>
+        </div>
+    </div>
+    
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Documento</th>
+                    <th scope="col">Nacimiento</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let miembro of miembros">
+                    <th scope="row">{{ miembro.id }}</th>
+                    <td>{{ miembro.nombre }}</td>
+                    <td>{{ miembro.apellido }}</td>
+                    <td>{{ miembro.documento }}</td>
+                    <td>{{ miembro.fecha_nacimiento | date:'dd/MM/yyyy'}}</td>
+                    <td>{{ miembro.telefono }}</td>
+                    <td>{{ miembro.correo }}</td>
+                    <td class="d-flex justify-content-around">
+                        <button class="btn btn-danger" (click)="eliminarMiembro(miembro)">
+                            <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+>>>>>>> 7f7c69e9c1cac4275004a917484f4e3ee6a8d5be
 </div>
 
