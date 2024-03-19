@@ -3,6 +3,9 @@ import { Disciplina } from 'src/app/models/disciplina.interface';
 import { AlertService } from 'src/app/services/alert.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+import { DisciplinaService } from 'src/app/services/backend/disciplina.service';
+import { catchError, throwError } from 'rxjs';
+
 @Component({
   selector: 'app-disciplina-form',
   templateUrl: './disciplina-form.component.html',
@@ -20,8 +23,10 @@ export class DisciplinaFormComponent {
 
   constructor(
     private alert: AlertService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private disciplinaService: DisciplinaService
   ) {
+
     if (!data.nuevo) {
       this.cargarInfo(data.body)
     }
@@ -45,7 +50,32 @@ export class DisciplinaFormComponent {
     }
 
     guardar(): void {
+      if(this.validarDatos()) {
+        if(this.data.nuevo){
+          
+          this.disciplinaService.crearNuevo(this.formData).pipe(catchError( (error) => {
+            return throwError( () => error )
+          })).subscribe( (response) => {
+            window.location.reload()
+          })
+        }else{
+          this.disciplinaService.editar(this.formData, this.formData.id).pipe(catchError( (error) => {
+            return throwError( () => error )
+          })).subscribe( (response) => {
+            window.location.reload()
+          })
+        }
+      }
       // Aquí puedes manejar la lógica para guardar los datos del formulario
       console.log('Datos del formulario:', this.formData);
+    }
+
+    validarDatos(): boolean {
+       // Validar nombre, modalidad como campos obligatorios
+      if (!this.formData.nombre || !this.formData.modalidad) {
+        this.alert.error('Nombre, modalidad son campos obligatorios.')
+        return false;
+      }
+      return true;
     }
 }

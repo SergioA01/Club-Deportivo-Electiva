@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Disciplina } from 'src/app/models/disciplina.interface';
-import { DisciplinaFormComponent } from '../disciplina-form/disciplina-form.component';
-import { ModalService } from 'src/app/services/modal.service';
 import { MatDialog } from '@angular/material/dialog';
+import { DisciplinaFormComponent } from '../disciplina-form/disciplina-form.component';
 import { AlertService } from 'src/app/services/alert.service';
+import { DisciplinaService } from 'src/app/services/backend/disciplina.service'
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-disciplina-base',
@@ -16,19 +17,20 @@ export class DisciplinaBaseComponent {
 
   constructor(
     private alert:AlertService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private disciplinaService: DisciplinaService
   ) {
-    for (let i = 1; i <= 8; i++) {
-      const disciplina: Disciplina = {
-        id: i,
-        nombre: `Deporte ${i}`,
-        modalidad: `Presencial ${i}`,
-        editar: () => this.editarMiembro(disciplina),
-        eliminar: () => this.eliminarMiembro(disciplina)
-      };
-      this.disciplinas.push(disciplina);
-    }
+    this.cargarlista()
   }
+
+  cargarlista(){
+    this.disciplinaService.obtenerDisciplinas().pipe(catchError( (error) => {
+      return throwError( () => error )
+    })).subscribe( (response) => {
+      this.disciplinas = response.data
+    })
+  }
+
   openDialog(){
     const dialogRef = this.dialog.open(DisciplinaFormComponent, {
       width: '1000px',
@@ -43,7 +45,7 @@ export class DisciplinaBaseComponent {
     });
   }
 
-  editarMiembro(disciplina: Disciplina): void {
+  editarDisciplina(disciplina: Disciplina): void {
     const dialogRef = this.dialog.open(DisciplinaFormComponent, {
       width: '1000px',
       data: {
@@ -57,10 +59,14 @@ export class DisciplinaBaseComponent {
     });
   }
 
-  async eliminarMiembro(disciplina: Disciplina) {
+  async eliminarDisciplina(disciplina: Disciplina) {
     const result = await this.alert.confirm(`¿Estás seguro que deseas eliminar el deporte ${disciplina.nombre} ?`, 'Eliminar')
     if(result.isConfirmed){
-      
+     this.disciplinaService.eliminarDisciplina(disciplina.id).pipe(catchError( (error) => {
+      return throwError( () => error )
+     })).subscribe( (response) => {
+      window.location.reload()
+     }) 
     }
   }
 }

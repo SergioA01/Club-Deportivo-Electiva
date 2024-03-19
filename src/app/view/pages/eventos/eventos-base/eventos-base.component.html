@@ -21,7 +21,6 @@
             <tr class="text-center">
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Descripción</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -30,11 +29,14 @@
             <tr *ngFor="let evento of eventos | filter:terminoBusqueda">
                 <th scope="row">{{ evento.id }}</th>
                 <td>{{ evento.nombre }}</td>
-                <td>{{ evento.descripcion }}</td>
                 <td>{{ evento.fecha | date:'dd/MM/yyyy'}}</td>
                 <td class="d-flex justify-content-around">
-                    <button class="btn btn-warning" (click)="evento.editar()"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></button>
-                    <button class="btn btn-danger" (click)="evento.eliminar()"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                    <button class="btn btn-warning" (click)="editarEvento(evento)">
+                        <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
+                    </button>
+                    <button class="btn btn-danger" (click)="eliminarEvento(evento)">
+                        <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+                    </button>
                 </td>
             </tr>
         </tbody>

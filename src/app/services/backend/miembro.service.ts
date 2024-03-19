@@ -25,7 +25,8 @@ export class MiembroService{
     }
 
     crearNuevo(formData: Miembro):Observable<any>{
-        return this.http.post(`${this.baseUrl}/deportistas`,formData)
+        let {id, ...formSinId} = formData;
+        return this.http.post(`${this.baseUrl}/deportistas`,formSinId)
     }
 
     editar(formData: Miembro,id:number):Observable<any>{

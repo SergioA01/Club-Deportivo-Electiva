@@ -21,20 +21,6 @@ export class MiembrosBaseComponent {
     private alert: AlertService,
     private miembroService: MiembroService
   ) {
-    /* for (let i = 1; i <= 8; i++) {
-      const miembro: Miembro = {
-        id: i,
-        nombre: `Nombre ${i}`,
-        apellido: `Apellido ${i}`,
-        documento: `Documento ${i}`,
-        nacimiento: new Date('1990-01-01'),
-        telefono: `Teléfono ${i}`,
-        correo: `correo${i}@example.com`,
-        editar: () => this.editarMiembro(miembro),
-        eliminar: () => this.eliminarMiembro(miembro)
-      };
-      this.miembros.push(miembro);
-    } */
     this.cargarlista()
   }
 
